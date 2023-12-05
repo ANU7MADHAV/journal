@@ -26,17 +26,17 @@ const Editor = ({ entry }: Prop) => {
     },
   })
   return (
-    <Box className="lg:flex fw-full h-full">
+    <Box className="dark:bg-black">
       {isLoading && <div>...Loading</div>}
       <textarea
-        className="w-full h-full m-5 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500 sm:px-6"
+        className="m-5 h-full w-full rounded-md border p-4 focus:border-blue-500 focus:outline-none focus:ring dark:bg-white sm:px-6"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
       <Box marginTop={10}>
         <Flex justify="center" alignItems="center" gap={5}>
           <Button
-            className="bg-red-600/80 border-black hover:scale-105 transition-shadow"
+            className="border-black bg-red-600/80 transition-shadow hover:scale-105"
             colorScheme="red"
             onClick={async () => {
               await deleteEntry(entry.id)
@@ -46,7 +46,7 @@ const Editor = ({ entry }: Prop) => {
             Delete
           </Button>
           <Button
-            className="bg-blue-600/80 hover:scale-105 transition-shadow"
+            className="bg-blue-600/80 transition-shadow hover:scale-105"
             colorScheme="blue"
             onClick={async () => {
               await updatedEntry(entry.id, value)

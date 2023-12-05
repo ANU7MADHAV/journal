@@ -27,11 +27,11 @@ const EntryPage = async ({ params }: Prop) => {
   const entry = await getEntry(params.id)
 
   return (
-    <Grid className="h-full w-full grid grid-cols-3">
+    <div className="px-4 dark:bg-black">
       <div className="col-span-2">
         <Editor entry={entry!} />
       </div>
-    </Grid>
+    </div>
   )
 }
 export const revalidate = 360000
