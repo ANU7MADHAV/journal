@@ -1,7 +1,6 @@
 import Editor from '@/components/Editor'
 import getUserIdByClerkId from '@/utilities/auth'
 import prisma from '@/utilities/db'
-import { Grid } from '@chakra-ui/react'
 
 interface Prop {
   params: { id: string }
