@@ -1,7 +1,7 @@
 import EntryCard from '@/components/EntryCard'
 import NewEntryCard from '@/components/NewEntryCard'
 import getUserIdByClerkId from '@/utilities/auth'
-import { Box, Grid, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
 import Link from 'next/link'
 
 const getEntries = async () => {
