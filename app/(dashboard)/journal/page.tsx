@@ -21,10 +21,8 @@ const JournalPage = async () => {
   const entries = await getEntries()
 
   return (
-    <Box padding={3} className="px-4 dark:bg-black sm:space-x-5">
-      <Heading mb={3} className="text-3xl dark:text-white sm:px-6">
-        Journals
-      </Heading>
+    <div className="px-4 dark:bg-black sm:space-x-5">
+      <h1 className="text-3xl dark:text-white sm:px-6">Journals</h1>
       <SimpleGrid columns={{ xl: 4, md: 3, sm: 2, base: 1 }} gap={3}>
         <NewEntryCard />
         {entries?.map((entry) => (
@@ -33,7 +31,7 @@ const JournalPage = async () => {
           </Link>
         ))}
       </SimpleGrid>
-    </Box>
+    </div>
   )
 }
 

@@ -19,7 +19,7 @@ const NewUser = async () => {
       },
     })
   }
-
+  redirect('/journal')
   return <div>NewUser</div>
 }
 

@@ -29,6 +29,7 @@ const Editor = ({ entry }: Prop) => {
     <Box className="dark:bg-black">
       {isLoading && <div>...Loading</div>}
       <textarea
+        id="editor"
         className="m-5 h-full w-full rounded-md border p-4 focus:border-blue-500 focus:outline-none focus:ring dark:bg-white sm:px-6"
         value={value}
         onChange={(e) => setValue(e.target.value)}

@@ -1,10 +1,9 @@
-import { Center } from '@chakra-ui/react'
 import { SignUp } from '@clerk/nextjs'
 
 export default function Page() {
   return (
-    <Center>
+    <div>
       <SignUp />
-    </Center>
+    </div>
   )
 }
