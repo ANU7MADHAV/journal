@@ -1,4 +1,5 @@
 'use client'
+import { SessionProvider } from 'next-auth/react'
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
 import { NextUIProvider } from '@nextui-org/react'
@@ -11,13 +12,15 @@ interface Props {
 
 const Providers = ({ children }: Props) => {
   return (
-    <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
-        <CacheProvider>
-          <ChakraProvider>{children}</ChakraProvider>
-        </CacheProvider>
-      </NextThemesProvider>
-    </NextUIProvider>
+    <SessionProvider>
+      <NextUIProvider>
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+          <CacheProvider>
+            <ChakraProvider>{children}</ChakraProvider>
+          </CacheProvider>
+        </NextThemesProvider>
+      </NextUIProvider>
+    </SessionProvider>
   )
 }
 

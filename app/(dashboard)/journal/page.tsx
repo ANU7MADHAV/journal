@@ -1,12 +1,20 @@
+import authOption from '@/app/auth/authOption'
 import EntryCard from '@/components/EntryCard'
 import NewEntryCard from '@/components/NewEntryCard'
-import getUserIdByClerkId from '@/utilities/auth'
+
 import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 
 const getEntries = async () => {
-  const user = await getUserIdByClerkId()
-  const entries = await prisma?.journalEntry.findMany({
+  const session = await getServerSession(authOption)
+  const user = await prisma?.user.findUnique({
+    where: {
+      email: session?.user?.email!,
+    },
+  })
+  if (!user) <p>Authetication failed</p>
+  const entries = await prisma?.journal.findMany({
     where: {
       userId: user?.id,
     },
@@ -19,7 +27,6 @@ const getEntries = async () => {
 
 const JournalPage = async () => {
   const entries = await getEntries()
-
   return (
     <div className="px-4 dark:bg-black sm:space-x-5">
       <h1 className="text-3xl dark:text-white sm:px-6">Journals</h1>

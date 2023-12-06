@@ -1,22 +1,27 @@
+import authOption from '@/app/auth/authOption'
 import Editor from '@/components/Editor'
-import getUserIdByClerkId from '@/utilities/auth'
 import prisma from '@/utilities/db'
+import { getServerSession } from 'next-auth'
+import { use } from 'react'
 
 interface Prop {
   params: { id: string }
 }
 
 const getEntry = async (id: string) => {
-  const user = await getUserIdByClerkId()
-  if (user?.id === undefined) {
-    console.log('user id undefined')
-  }
-  const entry = await prisma.journalEntry.findUnique({
+  const session = await getServerSession(authOption)
+  if (session) <p>Authentication failed</p>
+  const user = await prisma.user.findUnique({
     where: {
-      userId_id: {
-        userId: user?.id!,
-        id,
-      },
+      email: session?.user?.email!,
+    },
+  })
+  if (!user) <p>Authetication failed</p>
+
+  const entry = await prisma.journal.findUnique({
+    where: {
+      userId: user?.id,
+      id,
     },
   })
   return entry

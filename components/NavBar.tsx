@@ -1,7 +1,6 @@
-import { UserButton } from '@clerk/nextjs'
-
 import Link from 'next/link'
 import { ThemeSwitcher } from './ThemeSwitcher'
+import LoginComponent from './LoginButton'
 
 const NavBar = () => {
   const links = [
@@ -20,7 +19,7 @@ const NavBar = () => {
         </ul>
         <section className="flex gap-5">
           <ThemeSwitcher />
-          <UserButton />
+          <LoginComponent />
         </section>
       </nav>
     </div>

@@ -1,5 +1,6 @@
-import getUserIdByClerkId from '@/utilities/auth'
+import authOption from '@/app/auth/authOption'
 import prisma from '@/utilities/db'
+import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -8,14 +9,17 @@ interface Prop {
 }
 export const PATCH = async (request: NextRequest, { params }: Prop) => {
   const { content } = await request.json()
-  const user = await getUserIdByClerkId()
+  const session = await getServerSession(authOption)
 
-  const journalEntry = await prisma.journalEntry.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
-      userId_id: {
-        id: params.id,
-        userId: user?.id!,
-      },
+      email: session?.user?.email!,
+    },
+  })
+  const journalEntry = await prisma.journal.findUnique({
+    where: {
+      id: params.id,
+      userId: user?.id,
     },
   })
 
@@ -23,7 +27,7 @@ export const PATCH = async (request: NextRequest, { params }: Prop) => {
     return NextResponse.json({ error: 'Invalid Entry' }, { status: 404 })
   }
   if (journalEntry) {
-    const updatedEntry = await prisma.journalEntry.update({
+    const updatedEntry = await prisma.journal.update({
       where: {
         id: journalEntry.id,
       },
@@ -38,14 +42,17 @@ export const PATCH = async (request: NextRequest, { params }: Prop) => {
 
 export const PUT = async (request: NextRequest, { params }: Prop) => {
   const { content } = await request.json()
-  const user = await getUserIdByClerkId()
-
-  const journalEntry = await prisma.journalEntry.findUnique({
+  const session = await getServerSession(authOption)
+  const user = await prisma.user.findUnique({
     where: {
-      userId_id: {
-        id: params.id,
-        userId: user?.id!,
-      },
+      email: session?.user?.email!,
+    },
+  })
+
+  const journalEntry = await prisma.journal.findUnique({
+    where: {
+      id: params.id,
+      userId: user?.id!,
     },
   })
 
@@ -53,7 +60,7 @@ export const PUT = async (request: NextRequest, { params }: Prop) => {
     return NextResponse.json({ error: 'Invalid Entry' }, { status: 404 })
   }
   if (journalEntry) {
-    const updatedEntry = await prisma.journalEntry.update({
+    const updatedEntry = await prisma.journal.update({
       where: {
         id: journalEntry.id,
       },
@@ -67,14 +74,18 @@ export const PUT = async (request: NextRequest, { params }: Prop) => {
 }
 
 export const DELETE = async (request: Request, { params }: Prop) => {
-  const user = await getUserIdByClerkId()
+  const session = await getServerSession(authOption)
 
-  await prisma.journalEntry.delete({
+  const user = await prisma.user.findUnique({
     where: {
-      userId_id: {
-        id: params.id,
-        userId: user?.id!,
-      },
+      email: session?.user?.email!,
+    },
+  })
+
+  await prisma.journal.delete({
+    where: {
+      id: params.id,
+      userId: user?.id!,
     },
   })
 
