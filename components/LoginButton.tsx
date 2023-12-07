@@ -1,23 +1,38 @@
-import authOption from '@/app/auth/authOption'
-import { getServerSession } from 'next-auth'
+'use client'
+import {
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from '@nextui-org/react'
 
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-export default async function LoginComponent() {
-  const session = await getServerSession(authOption)
+export default function LoginComponent() {
+  const { data: session } = useSession()
+
   if (session) {
     return (
       <>
-        Signed in as {session.user?.name} <br />
-        <Link href={'/api/auth/signout'}>
-          <button>Sign out</button>
-        </Link>
+        <Dropdown>
+          <DropdownTrigger>
+            <Avatar showFallback src={session.user?.image!} size="md" />
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Static Actions" className="dark:text-white">
+            <DropdownItem key="name">{session.user?.name}</DropdownItem>
+
+            <DropdownItem key="signout" className="text-danger" color="danger">
+              <Link href={'/api/auth/signout'}>Sign out</Link>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </>
     )
   }
   return (
     <>
-      Not signed in <br />
       <Link href={'/api/auth/signin'}>
         <button>Sign in</button>
       </Link>

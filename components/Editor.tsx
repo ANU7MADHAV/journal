@@ -1,14 +1,14 @@
 'use client'
 import { deleteEntry, updateEntry, updatedEntry } from '@/utilities/api'
 import { Box, Button, Flex } from '@chakra-ui/react'
-import { JournalEntry } from '@prisma/client'
-import { revalidatePath } from 'next/cache'
+import { Journal } from '@prisma/client'
+
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Autosave } from 'react-autosave'
 
 interface Prop {
-  entry: JournalEntry
+  entry: Journal
 }
 
 const Editor = ({ entry }: Prop) => {
@@ -27,7 +27,7 @@ const Editor = ({ entry }: Prop) => {
   })
   return (
     <Box className="dark:bg-black">
-      {isLoading && <div>...Loading</div>}
+      {isLoading && <div className="dark:text-white">...Loading</div>}
       <textarea
         id="editor"
         className="m-5 h-full w-full rounded-md border p-4 focus:border-blue-500 focus:outline-none focus:ring dark:bg-white sm:px-6"
