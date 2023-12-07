@@ -2,6 +2,7 @@ import authOption from '@/app/auth/authOption'
 import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
+import prisma from '@/utilities/db'
 
 export const POST = async () => {
   const session = await getServerSession(authOption)

@@ -2,7 +2,7 @@ import authOption from '@/app/auth/authOption'
 import Editor from '@/components/Editor'
 import prisma from '@/utilities/db'
 import { getServerSession } from 'next-auth'
-import { use } from 'react'
+
 
 interface Prop {
   params: { id: string }
