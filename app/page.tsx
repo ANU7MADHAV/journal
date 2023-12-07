@@ -3,8 +3,8 @@ import { Button, Center, Heading, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
 export default function Home() {
-  return (try {
-       <div className="h-screen w-screen dark:bg-black dark:text-white">
+  return (
+    <div className="h-screen w-screen dark:bg-black dark:text-white">
       <div className="flex h-full w-full items-center justify-center">
         <div className="space-y-5 px-4">
           <Heading className="text-center">Reflectify</Heading>
@@ -23,9 +23,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-    } catch (error) {
-      console.log(error)
-    }
-   
   )
 }

@@ -1,8 +1,8 @@
 import authOption from '@/app/auth/authOption'
 import EntryCard from '@/components/EntryCard'
 import NewEntryCard from '@/components/NewEntryCard'
-
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
+import prisma from '@/utilities/db'
+import { SimpleGrid } from '@chakra-ui/react'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 

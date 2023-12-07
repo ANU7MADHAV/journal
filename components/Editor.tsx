@@ -35,7 +35,7 @@ const Editor = ({ entry }: Prop) => {
       />
       <Box marginTop={10}>
         <Flex justify="center" alignItems="center" gap={5}>
-          {/* <Button
+          <Button
             className="border-black bg-red-600/80 transition-shadow hover:scale-105"
             colorScheme="red"
             onClick={async () => {
@@ -44,8 +44,8 @@ const Editor = ({ entry }: Prop) => {
             }}
           >
             Delete
-          </Button> */}
-          {/* <Button
+          </Button>
+          <Button
             className="bg-blue-600/80 transition-shadow hover:scale-105"
             colorScheme="blue"
             onClick={async () => {
@@ -55,7 +55,7 @@ const Editor = ({ entry }: Prop) => {
             }}
           >
             Submit
-          </Button> */}
+          </Button>
         </Flex>
       </Box>
     </Box>
