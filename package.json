@@ -18,6 +18,7 @@
     "@next-auth/prisma-adapter": "^1.0.7",
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.7.0",
+    "@sentry/nextjs": "^7.85.0",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.14",
     "langchain": "^0.0.198",
