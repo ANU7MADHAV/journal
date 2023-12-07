@@ -6,10 +6,10 @@ import {
   Divider,
   Heading,
 } from '@chakra-ui/react'
-import { JournalEntry } from '@prisma/client'
+import { Journal } from '@prisma/client'
 
 interface Prop {
-  entry: JournalEntry
+  entry: Journal
 }
 const EntryCard = ({ entry }: Prop) => {
   const date = new Date(entry.createdAt).toDateString()
